@@ -43,3 +43,4 @@
         - User will be required to select a mood to view the list of relevant teas. User will also be required to select a tea in order to view a short description of the tea.
 
 3. Flow diagram planning
+    - https://drive.google.com/file/d/1kTzcJBGOeAxMqDQJ0p2dTvQislxcsHH1/view?usp=sharing
