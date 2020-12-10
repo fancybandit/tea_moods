@@ -44,3 +44,14 @@
 
 3. Flow diagram planning
     - https://drive.google.com/file/d/1kTzcJBGOeAxMqDQJ0p2dTvQislxcsHH1/view?usp=sharing
+
+4. Data planning
+    - What is a mood?
+        - A mood has a name
+        - A mood has teas
+    - What is a tea?
+        - A tea has a name
+        - A tea has a description
+        - A tea has ingredients
+        - A tea belongs to a mood
+        - A tea has a URL
