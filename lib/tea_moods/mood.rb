@@ -18,6 +18,6 @@ class TeaMoods::Mood
         mood_2.name = "Focus"
         mood_2.teas = "Matcha"
 
-        [mood_1, mood_2]
+        p [mood_1.name, mood_2.name]
     end
 end
