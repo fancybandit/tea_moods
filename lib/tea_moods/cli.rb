@@ -9,15 +9,10 @@ class TeaMoods::CLI
     end
 
     def list_moods
-        puts "1. Relax"
-        puts "2. Focus"
-        puts "3. Good Mood"
-        puts "4. Energy"
-        puts "5. Detox"
+        @moods = TeaMoods::Mood.list
     end
 
     def menu
-        
         input = nil
         while input != "exit"
             puts "Enter the number of a mood to view associated teas: "
