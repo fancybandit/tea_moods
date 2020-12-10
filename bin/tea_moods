@@ -1,3 +1,5 @@
 #!/usr/bin/env ruby
 
-puts "Hello World"
+require_relative '../lib/tea_moods'
+
+TeaMoods::CLI.new.call

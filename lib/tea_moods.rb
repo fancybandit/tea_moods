@@ -1,6 +1,2 @@
-require "tea_moods/version"
-
-module TeaMoods
-  class Error < StandardError; end
-  # Your code goes here...
-end
+require_relative "./tea_moods/version"
+require_relative "./tea_moods/cli"
