@@ -6,8 +6,9 @@ class TeaMoods::Mood
     @@all = []
 
     def initialize(name)
-        @name = name
-        self.save
+        self.name = name
+
+        save
     end
 
     def self.list
@@ -15,13 +16,12 @@ class TeaMoods::Mood
         @@all
     end
 
-    def get_description
-        #IN PROGRESS
-        TeaMoods::Scraper.scrape_mood_desc
+    def get_desc
+        # TeaMoods::Scraper.scrape_mood_desc(self) if @desc.empty?
     end
 
     def get_teas
-        TeaMoods::Scraper.scrape_teas(self) if @teas.empty?
+        # TeaMoods::Scraper.scrape_teas(self) if @teas.empty?
     end
 
     def save
