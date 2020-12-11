@@ -3,4 +3,5 @@ require_relative "./tea_moods/cli"
 require_relative "./tea_moods/mood"
 
 require 'pry'
+require 'open-uri'
 require 'nokogiri'
