@@ -11,4 +11,10 @@ class TeaMoods::Scraper
             TeaMoods::Mood.new(name)
         end
     end
+
+    def self.scrape_teas(mood)
+        doc = Nokogiri::HTML(open("https://www.traditionalmedicinals.com/collection/benefit-all/"))
+
+        teas = doc.css()
+    end
 end

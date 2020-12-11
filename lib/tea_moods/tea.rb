@@ -1,0 +1,4 @@
+
+class TeaMoods::Tea
+end
+
