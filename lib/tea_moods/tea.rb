@@ -5,6 +5,10 @@ class TeaMoods::Tea
 
     @@all = []
 
-    def initialize(name, url, desc, mood)
+    def initialize(name, url, mood)
+        self.name = name
+        self.url = url
+        self.mood = mood
+    end
 end
 

@@ -5,9 +5,8 @@ class TeaMoods::Mood
 
     @@all = []
 
-    def initialize(name, desc)
+    def initialize(name)
         @name = name
-        @desc = desc
         self.save
     end
 

@@ -3,16 +3,21 @@
 class TeaMoods::CLI
 
     def call
-        puts "Available benefits: "
         list_moods
         menu
     end
 
     def list_moods
+        puts "Available benefits: "
         @moods = TeaMoods::Mood.list
         @moods.each.with_index(1) do |mood, i|
             puts "#{i}. #{mood.name}"
         end
+    end
+
+    def list_teas
+        puts "Matching teas: "
+        # @teas = TeaMoods::Tea
     end
 
     def menu
@@ -22,17 +27,15 @@ class TeaMoods::CLI
             puts "(Otherwise, type 'list' to view list again or 'exit' to leave)"
             
             input = gets.strip
-            is_number = (input == "#{input.to_i}")
-            valid_number = (input.to_i > 0 && input.to_i <= @moods.length)
 
-            if is_number && valid_number
+            if is_number?(input) && valid_choice?(input, @moods)
                 # Program gets month of user's input
 
                 # Create list_teas method that
                 # works with a specified month
 
                 # Also print the mood's description
-                
+
                 puts @moods[input.to_i-1].teas
             elsif input == "list"
                 list_moods
@@ -42,6 +45,14 @@ class TeaMoods::CLI
                 puts "Invalid input"
             end
         end
+    end
+
+    def is_number?(str)
+        str == "#{str.to_i}"
+    end
+
+    def valid_choice?(input, data)
+        input.to_i > 0 && input.to_i <= data.length)
     end
 
     def goodbye
