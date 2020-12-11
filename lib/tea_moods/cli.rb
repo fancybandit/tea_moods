@@ -26,6 +26,7 @@ class TeaMoods::CLI
             valid_number = (input.to_i > 0 && input.to_i <= @moods.length)
 
             if is_number && valid_number
+                
                 puts @moods[input.to_i-1].teas
             elsif input == "list"
                 list_moods
