@@ -20,8 +20,12 @@ class TeaMoods::CLI
         while input != "exit"
             puts "Enter the number of a mood to view associated teas: "
             puts "(Otherwise, type 'list' to view list again or 'exit' to leave)"
+            
             input = gets.strip
-            if input.to_i > 0 && input.to_i <= @moods.length
+            is_number = (input == "#{input.to_i}")
+            valid_number = (input.to_i > 0 && input.to_i <= @moods.length)
+
+            if is_number && valid_number
                 puts @moods[input.to_i-1].teas
             elsif input == "list"
                 list_moods
