@@ -26,6 +26,12 @@ class TeaMoods::CLI
             valid_number = (input.to_i > 0 && input.to_i <= @moods.length)
 
             if is_number && valid_number
+                # Program gets month of user's input
+
+                # Create list_teas method that
+                # works with a specified month
+
+                # Also print the mood's description
                 
                 puts @moods[input.to_i-1].teas
             elsif input == "list"

@@ -1,8 +1,7 @@
 
 class TeaMoods::Mood
 
-    attr_accessor :desc, :teas
-    attr_reader :name
+    attr_accessor :name, :desc, :teas
 
     @@all = []
 
