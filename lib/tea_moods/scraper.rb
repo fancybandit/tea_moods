@@ -1,0 +1,3 @@
+
+class TeaMoods::Scraper
+end
