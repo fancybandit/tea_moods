@@ -10,6 +10,9 @@ class TeaMoods::CLI
 
     def list_moods
         @moods = TeaMoods::Mood.list
+        @moods.each.with_index(1) do |mood, i|
+            puts "#{i}. #{mood.name}"
+        end
     end
 
     def menu
@@ -18,17 +21,14 @@ class TeaMoods::CLI
             puts "Enter the number of a mood to view associated teas: "
             puts "(Otherwise, type 'list' to view list again or 'exit' to leave)"
             input = gets.strip
-            case input
-            when "1"
-                puts "Tea list 1"
-            when "2"
-                puts "Tea list 2"
-            when "list"
+            if input.to_i > 0 && input.to_i <= @moods.length
+                puts @moods[input.to_i-1].teas
+            elsif input == "list"
                 list_moods
-            when "exit"
-                goodbye
+            elsif input == "exit"
+                puts "goodbye"
             else
-                puts "Not a valid number..."
+                puts "Invalid input"
             end
         end
     end
