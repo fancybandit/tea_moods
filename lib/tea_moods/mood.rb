@@ -10,6 +10,7 @@ class TeaMoods::Mood
 
     def self.scrape_moods
         moods = []
+
         # Go to Traditional Medicinals benefits page
         # Extract the moods
         # Instantiate moods

@@ -1,7 +1,5 @@
 #!/usr/bin/env ruby
 
-# require_relative '../lib/tea_moods'
-
 require "bundler/setup"
 require "tea_moods"
 
