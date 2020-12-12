@@ -18,9 +18,17 @@ class TeaMoods::Scraper
     end
 
     def self.scrape_teas(mood)
-        doc = Nokogiri::HTML(open("https://www.traditionalmedicinals.com/collection/benefit-all/"))
 
-        teas = doc.css()
+        # MAKE SURE NAME IS DOWNCASED, HYPHENATED, & W/O ' or + or & etc.
+        doc = Nokogiri::HTML(open("https://www.traditionalmedicinals.com/collection/benefit-#{mood.name.downcase}/"))
+
+        teas = doc.css("div.tm-collection-benefit-section.tm-collection-benefit-section--detox > div a")
+        teas.each do |tea|
+            link = tea.attr("href")
+            name = tea.css("p").text
+            TeaMoods::Tea.new(name, link, mood)
+        end
+        binding.pry
     end
 
     def self.scrape_tea_desc(tea)

@@ -1,18 +1,17 @@
 
 class TeaMoods::Mood
 
-    attr_accessor :name, :desc, :teas
+    attr_accessor :name, :desc
 
     @@all = []
 
-    def initialize(name)
+    def initialize(name, desc)
         self.name = name
-
+        self.desc = desc
         save
     end
 
-    def self.list
-        TeaMoods::Scraper.scrape_moods if @@all.empty?
+    def self.all
         @@all
     end
 
@@ -22,6 +21,10 @@ class TeaMoods::Mood
 
     def get_teas
         # TeaMoods::Scraper.scrape_teas(self) if @teas.empty?
+    end
+
+    def teas
+        TeaMoods::Tea.all.select {|tea| tea.mood == self}
     end
 
     def save

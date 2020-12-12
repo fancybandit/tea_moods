@@ -3,21 +3,21 @@
 class TeaMoods::CLI
 
     def call
+        get_moods
         list_moods
         menu
     end
 
+    def get_moods
+        @moods = TeaMoods::Mood.all
+        TeaMoods::Scraper.scrape_moods if @moods.empty?
+    end
+
     def list_moods
         puts "Available benefits: "
-        @moods = TeaMoods::Mood.list
         @moods.each.with_index(1) do |mood, i|
             puts "#{i}. #{mood.name}"
         end
-    end
-
-    def list_teas
-        puts "Matching teas: "
-        # @teas = TeaMoods::Tea
     end
 
     def menu
@@ -52,7 +52,12 @@ class TeaMoods::CLI
     end
 
     def valid_choice?(input, data)
-        input.to_i > 0 && input.to_i <= data.length)
+        input.to_i > 0 && input.to_i <= data.length
+    end
+    
+    def list_teas
+        puts "Matching teas: "
+        # @teas = TeaMoods::Tea
     end
 
     def goodbye

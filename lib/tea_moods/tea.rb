@@ -10,8 +10,6 @@ class TeaMoods::Tea
         self.url = url
         self.mood = mood
 
-        self.add_to_mood
-
         save
     end
 
@@ -20,12 +18,12 @@ class TeaMoods::Tea
     end
 
     def save
-        @@all << self
+        self.class.all << self
     end
 
-    def add_to_mood
-        @mood.teas << self unless @mood.teas.include?(self)
-    end
+    # def add_to_mood
+    #     @mood.teas << self unless @mood.teas.include?(self)
+    # end
 
     def get_desc
         # TeaMoods::Scraper.scrape_tea_desc(self) if @desc.empty?
