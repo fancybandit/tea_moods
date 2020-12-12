@@ -18,21 +18,17 @@ class TeaMoods::Scraper
         end
     end
 
-    def self.scrape_mood_desc(mood)
-        # IN PROGRESS
-    end
-
     def self.scrape_teas(mood)
-
-        # MAKE SURE NAME IS DOWNCASED, HYPHENATED, & W/O ' or + or & etc.
         prep_name = mood.name.gsub(/[^0-9A-Za-z" "]/, '').downcase
-        prep_name = prep_name.split(" ").join("-")
-        doc = Nokogiri::HTML(open("https://www.traditionalmedicinals.com/collection/benefit-#{prep_name}/"))
+        mood_url_name = prep_name.split(" ").join("-")
 
-        teas = doc.css("div.tm-collection-benefit-section.tm-collection-benefit-section--#{prep_name} > div a")
+        doc = Nokogiri::HTML(open("https://www.traditionalmedicinals.com/collection/benefit-#{mood_url_name}/"))
+
+        teas = doc.css("div.tm-collection-benefit-section.tm-collection-benefit-section--#{mood_url_name} > div a")
+
         teas.each do |tea|
-            url = tea.attr("href")
             name = tea.css("p").text
+            url = tea.attr("href")
             TeaMoods::Tea.new(name, url, mood)
         end
     end

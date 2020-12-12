@@ -26,6 +26,7 @@ class TeaMoods::CLI
     end
 
     def list_teas(mood_choice)
+        puts mood_choice.desc
         get_teas(mood_choice)
         puts "Matching teas: "
         @teas.each.with_index(1) do |tea, i|

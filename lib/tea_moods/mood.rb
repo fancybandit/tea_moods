@@ -2,13 +2,15 @@
 class TeaMoods::Mood
 
     # A Mood has many teas
-    attr_accessor :name, :desc
+    attr_accessor :name, :desc, :teas
 
     @@all = []
 
     def initialize(name, desc)
         self.name = name
         self.desc = desc
+        self.teas = []
+
         save
     end
 
@@ -19,6 +21,10 @@ class TeaMoods::Mood
     def save
         self.class.all << self
     end
+
+    # def get_teas
+    #     TeaMoods::Scraper.scrape_teas(self) if @teas.empty?
+    # end
 
     def get_desc
         # TeaMoods::Scraper.scrape_mood_desc(self) if @desc.empty?
