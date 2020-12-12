@@ -19,13 +19,13 @@ class TeaMoods::Mood
         # TeaMoods::Scraper.scrape_mood_desc(self) if @desc.empty?
     end
 
-    def get_teas
-        # TeaMoods::Scraper.scrape_teas(self) if @teas.empty?
-    end
+    # def get_teas
+    #     # TeaMoods::Scraper.scrape_teas(self) if @teas.empty?
+    # end
 
-    def teas
-        TeaMoods::Tea.all.select {|tea| tea.mood == self}
-    end
+    # def teas
+    #     TeaMoods::Tea.all.select {|tea| tea.mood == self}
+    # end
 
     def save
         @@all << self

@@ -20,6 +20,19 @@ class TeaMoods::CLI
         end
     end
 
+    def get_teas(mood_choice)
+        @teas = TeaMoods::Tea.all.select {|tea| tea.mood == mood_choice}
+        TeaMoods::Scraper.scrape_teas(mood_choice) if @teas.empty?
+    end
+
+    def list_teas(mood_choice)
+        get_teas(mood_choice)
+        puts "Matching teas: "
+        @teas.each.with_index(1) do |tea, i|
+            puts "#{i}. #{tea.name}"
+        end
+    end
+
     def menu
         input = nil
         while input != "exit"
@@ -29,14 +42,10 @@ class TeaMoods::CLI
             input = gets.strip
 
             if is_number?(input) && valid_choice?(input, @moods)
-                # Program gets month of user's input
-
-                # Create list_teas method that
-                # works with a specified month
-
+                selected_mood = @moods[input.to_i-1]
+                get_teas(selected_mood)
+                list_teas(selected_mood)
                 # Also print the mood's description
-
-                puts @moods[input.to_i-1].teas
             elsif input == "list"
                 list_moods
             elsif input == "exit"
@@ -47,17 +56,16 @@ class TeaMoods::CLI
         end
     end
 
+    # def input
+    #     gets.strip
+    # end
+
     def is_number?(str)
         str == "#{str.to_i}"
     end
 
     def valid_choice?(input, data)
         input.to_i > 0 && input.to_i <= data.length
-    end
-    
-    def list_teas
-        puts "Matching teas: "
-        # @teas = TeaMoods::Tea
     end
 
     def goodbye
