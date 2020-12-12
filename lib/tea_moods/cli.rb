@@ -3,6 +3,7 @@
 class TeaMoods::CLI
 
     def call
+        greeting
         get_moods
         list_moods
         menu
@@ -47,7 +48,8 @@ class TeaMoods::CLI
         input = nil
 
         while input != "exit"
-            puts "Enter the number of a mood to view associated teas: "
+
+            puts "Enter the number of a mood/benefit to view associated teas: "
             puts "(Otherwise, type 'list' to view list again or 'exit' to leave)"
             
             input = gets.strip
@@ -58,9 +60,9 @@ class TeaMoods::CLI
                 get_teas(selected_mood)
                 list_teas(selected_mood)
                 
-                while input != "exit"
+                while (input != "back") && (input != "exit")
                     puts "Enter the number of a tea to view a description: "
-                    puts "(Otherwise, type 'list' to view list again or 'exit' to leave)"
+                    puts "(Otherwise, type 'list' to view list again, 'back' to return to mood menu, or 'exit' to leave)"
 
                     input = gets.strip
 
@@ -69,10 +71,18 @@ class TeaMoods::CLI
 
                         get_tea_desc(selected_tea)
                         list_tea_desc(selected_tea)
+                    elsif input == "list"
+                        list_teas(selected_mood)
+                    elsif input == "back"
+                        puts "Returning to mood list"
+                        list_moods
+                    elsif input == "exit"
+                        goodbye
                     else
-                        puts "bye i guess"
+                        puts "Invalid input"
                     end
                 end
+
             elsif input == "list"
                 list_moods
             elsif input == "exit"
@@ -83,10 +93,6 @@ class TeaMoods::CLI
         end
     end
 
-    # def input
-    #     gets.strip
-    # end
-
     def is_number?(str)
         str == "#{str.to_i}"
     end
@@ -95,8 +101,12 @@ class TeaMoods::CLI
         input.to_i > 0 && input.to_i <= data.length
     end
 
+    def greeting
+        puts "Welcome to TeaMoods! The app that helps you select the perfect cup of tea from Traditonal Medicinals®"
+    end
+
     def goodbye
-        puts "bye i guess"
+        puts "Goodbye, take it easy."
     end
 end
 
