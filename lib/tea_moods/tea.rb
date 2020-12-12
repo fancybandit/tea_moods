@@ -1,6 +1,7 @@
 
 class TeaMoods::Tea
 
+    # A Tea has many moods
     attr_accessor :name, :url, :mood, :desc #, :nutrition_url
 
     @@all = []
