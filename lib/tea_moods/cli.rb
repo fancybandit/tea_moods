@@ -25,6 +25,10 @@ class TeaMoods::CLI
         TeaMoods::Scraper.scrape_teas(mood_choice) if @teas.empty?
     end
 
+    def get_tea_desc(tea_choice)
+        TeaMoods::Scraper.scrape_tea_desc(tea_choice) if tea_choice.desc == nil
+    end
+
     def list_teas(mood_choice)
         puts mood_choice.desc
         get_teas(mood_choice)
@@ -34,8 +38,14 @@ class TeaMoods::CLI
         end
     end
 
+    def list_tea_desc(tea_choice)
+        puts tea_choice.desc
+    end
+
     def menu
+
         input = nil
+
         while input != "exit"
             puts "Enter the number of a mood to view associated teas: "
             puts "(Otherwise, type 'list' to view list again or 'exit' to leave)"
@@ -44,13 +54,29 @@ class TeaMoods::CLI
 
             if is_number?(input) && valid_choice?(input, @moods)
                 selected_mood = @moods[input.to_i-1]
+
                 get_teas(selected_mood)
                 list_teas(selected_mood)
-                # Also print the mood's description
+                
+                while input != "exit"
+                    puts "Enter the number of a tea to view a description: "
+                    puts "(Otherwise, type 'list' to view list again or 'exit' to leave)"
+
+                    input = gets.strip
+
+                    if is_number?(input) && valid_choice?(input, @teas)
+                        selected_tea = @teas[input.to_i-1]
+
+                        get_tea_desc(selected_tea)
+                        list_tea_desc(selected_tea)
+                    else
+                        puts "bye i guess"
+                    end
+                end
             elsif input == "list"
                 list_moods
             elsif input == "exit"
-                puts "goodbye"
+                goodbye
             else
                 puts "Invalid input"
             end

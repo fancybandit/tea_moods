@@ -34,7 +34,15 @@ class TeaMoods::Scraper
     end
 
     def self.scrape_tea_desc(tea)
-        # IN PROGRESS
+        link = tea.url
+
+        doc = Nokogiri::HTML(open(link))
+
+        tea_info = doc.css("div.trm-product-details > p:nth-child(3)").text.split("\n")
+        tea_info.shift
+        description = tea_info.join
+
+        tea.desc = description
     end
 end
 
