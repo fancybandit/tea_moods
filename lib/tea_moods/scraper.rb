@@ -6,7 +6,12 @@ class TeaMoods::Scraper
 
         moods = doc.css("div.tm-collection-benefit-section div.tm-collection-product.tm-collection-product--intro")
 
-        moods.each do |mood|
+        functional_moods = moods.reject do |mood|
+            name = mood.css("h2:first-of-type span").text
+            name == "H+H Tea"
+        end
+
+        functional_moods.each do |mood|
             name = mood.css("h2:first-of-type span").text
             desc = mood.css("p").text
             TeaMoods::Mood.new(name, desc)
@@ -20,7 +25,10 @@ class TeaMoods::Scraper
     def self.scrape_teas(mood)
 
         # MAKE SURE NAME IS DOWNCASED, HYPHENATED, & W/O ' or + or & etc.
-        doc = Nokogiri::HTML(open("https://www.traditionalmedicinals.com/collection/benefit-#{mood.name.downcase}/"))
+        prep_name = mood.name.gsub(/[^0-9A-Za-z" "]/, '').downcase
+        prep_name = prep_name.split(" ").join("-")
+        binding.pry
+        doc = Nokogiri::HTML(open("https://www.traditionalmedicinals.com/collection/benefit-#{prep_name}/"))
 
         teas = doc.css("div.tm-collection-benefit-section.tm-collection-benefit-section--detox > div a")
         teas.each do |tea|
@@ -28,7 +36,6 @@ class TeaMoods::Scraper
             name = tea.css("p").text
             TeaMoods::Tea.new(name, link, mood)
         end
-        binding.pry
     end
 
     def self.scrape_tea_desc(tea)
