@@ -1,7 +1,6 @@
 
 class TeaMoods::Tea
 
-    # A Tea has many moods
     attr_accessor :name, :url, :mood, :desc #, :nutrition_url
 
     @@all = []
@@ -21,14 +20,5 @@ class TeaMoods::Tea
     def save
         self.class.all << self
     end
-
-    # def add_to_mood
-    #     @mood.teas << self unless @mood.teas.include?(self)
-    # end
-
-    def get_desc
-        # TeaMoods::Scraper.scrape_tea_desc(self) if @desc.empty?
-    end
-
 end
 
