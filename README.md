@@ -1,6 +1,6 @@
 # TeaMoods
 
-    #### DESCRIPTION GOES HERE ####
+Welcome to Tea Moods! Tea Moods is a CLI application that lets a user select a tea based on a mood/effect that they are looking for. This app scrapes mood & tea data from the Traditonal Medicinals® website.
 
 ## Installation
 
@@ -20,7 +20,14 @@ Or install it yourself as:
 
 ## Usage
 
-    #### INSTRUCTIONS GOES HERE ####
+    Run the application with './bin/tea_moods'
+    You will be greeted with a list of moods/effects
+    - Select a desired mood/effect by typing in its associated number to view associated teas
+    You will be greeted with a list of teas
+    - Select a desired tea by typing in its associated number to view the tea's description
+    - Type 'back' to go back to the mood menu
+    At any time, you may type 'list' to view the list of moods/teas again
+    or you may type 'exit' to leave the program
 
 ## Development
 
@@ -30,7 +37,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/tea_moods. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/tea_moods/blob/master/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on GitHub at https://github.com/fancybandit/tea_moods. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/fancybandit/tea_moods/blob/master/CODE_OF_CONDUCT.md).
 
 
 ## License
@@ -39,4 +46,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the TeaMoods project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/tea_moods/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the TeaMoods project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/fancybandit/tea_moods/blob/master/CODE_OF_CONDUCT.md).

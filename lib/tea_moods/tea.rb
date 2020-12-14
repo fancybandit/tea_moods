@@ -1,7 +1,7 @@
 
 class TeaMoods::Tea
 
-    attr_accessor :name, :url, :mood, :desc #, :nutrition_url
+    attr_accessor :name, :url, :mood, :desc
 
     @@all = []
 

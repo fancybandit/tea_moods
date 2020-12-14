@@ -1,5 +1,4 @@
 
-# CLI Controller
 class TeaMoods::CLI
 
     def call
