@@ -3,6 +3,8 @@ PATH
   specs:
     tea_moods (0.1.0)
       nokogiri
+      open-uri
+      tty-table
 
 GEM
   remote: https://rubygems.org/
@@ -12,10 +14,26 @@ GEM
     mini_portile2 (2.4.0)
     nokogiri (1.10.10)
       mini_portile2 (~> 2.4.0)
+    open-uri (0.1.0)
+    pastel (0.8.0)
+      tty-color (~> 0.5)
     pry (0.13.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
     rake (12.3.2)
+    strings (0.2.0)
+      strings-ansi (~> 0.2)
+      unicode-display_width (~> 1.5)
+      unicode_utils (~> 1.4)
+    strings-ansi (0.2.0)
+    tty-color (0.6.0)
+    tty-screen (0.8.1)
+    tty-table (0.12.0)
+      pastel (~> 0.8)
+      strings (~> 0.2.0)
+      tty-screen (~> 0.8)
+    unicode-display_width (1.7.0)
+    unicode_utils (1.4.0)
 
 PLATFORMS
   ruby
