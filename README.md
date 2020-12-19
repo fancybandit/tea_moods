@@ -1,6 +1,6 @@
 # TeaMoods
 
-Welcome to Tea Moods! Tea Moods is a CLI application that lets a user select a tea based on a mood/effect that they are looking for. This app scrapes mood & tea data from the Traditonal Medicinals® website.
+Welcome to Tea Moods! Tea Moods is a CLI application that lets a user select a tea based on a mood/effect/health condition that they are looking for help with. This app scrapes mood & tea data from the Traditonal Medicinals® website.
 
 ## Installation
 
@@ -20,14 +20,13 @@ Or install it yourself as:
 
 ## Usage
 
-    Run the application with './bin/tea_moods'
-    You will be greeted with a list of moods/effects
+    - Run the application with './bin/tea_moods'
+    - You will be greeted with a list of moods/effects
     - Select a desired mood/effect by typing in its associated number to view associated teas
-    You will be greeted with a list of teas
+    - You will be presented with a list of teas
     - Select a desired tea by typing in its associated number to view the tea's description
     - Type 'back' to go back to the mood menu
-    At any time, you may type 'list' to view the list of moods/teas again
-    or you may type 'exit' to leave the program
+    - At any time, you may type 'list' to view the list of moods/teas again, or you may type 'exit' to end the program
 
 ## Development
 
