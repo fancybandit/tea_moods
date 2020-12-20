@@ -19,9 +19,18 @@ class TeaMoods::CLI
 
     def list_moods
         puts "Available benefits: "
+        
+        array_a = []
+        array_b = []
         @moods.each.with_index(1) do |mood, i|
-            puts "#{i}. #{mood.name}"
+            if i <= ((@moods.length + 2) / 2)
+                array_a << "#{i}. #{mood.name}"
+            else
+                array_b << "#{i}. #{mood.name}"
+            end
         end
+        table = TTY::Table.new(array_a.zip(array_b))
+        puts table.render(:unicode, resize: true)
     end
 
     def get_teas(mood_choice)
