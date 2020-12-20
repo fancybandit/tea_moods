@@ -27,9 +27,14 @@ class TeaMoods::Scraper
         teas = doc.css("div.tm-collection-benefit-section.tm-collection-benefit-section--#{mood_url_name} > div a")
 
         teas.each do |tea|
-            name = tea.css("p").text
-            url = tea.attr("href")
-            TeaMoods::Tea.new(name, url, mood)
+            tea_name = tea.css("p").text
+            same_tea = TeaMoods::Tea.all.detect {|t| t.name == tea_name}
+            if same_tea
+                same_tea.save_mood(mood)
+            else
+                url = tea.attr("href")
+                TeaMoods::Tea.new(tea_name, url, mood)
+            end
         end
     end
 

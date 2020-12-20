@@ -3,7 +3,6 @@ PATH
   specs:
     tea_moods (0.1.0)
       nokogiri
-      open-uri
       tty-table
 
 GEM
@@ -14,7 +13,6 @@ GEM
     mini_portile2 (2.4.0)
     nokogiri (1.10.10)
       mini_portile2 (~> 2.4.0)
-    open-uri (0.1.0)
     pastel (0.8.0)
       tty-color (~> 0.5)
     pry (0.13.1)

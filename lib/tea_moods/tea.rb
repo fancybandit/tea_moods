@@ -1,14 +1,15 @@
 
 class TeaMoods::Tea
 
-    attr_accessor :name, :url, :mood, :desc
+    attr_accessor :name, :url, :moods, :desc
 
     @@all = []
 
     def initialize(name, url, mood)
         self.name = name
         self.url = url
-        self.mood = mood
+        self.moods = []
+        save_mood(mood)
 
         save
     end
@@ -19,6 +20,10 @@ class TeaMoods::Tea
 
     def save
         self.class.all << self
+    end
+
+    def save_mood(mood)
+        self.moods << mood
     end
 end
 

@@ -8,6 +8,10 @@ class TeaMoods::CLI
         menu
     end
 
+    def greeting
+        puts "Welcome to TeaMoods! The app that helps you select the perfect cup of tea from Traditonal Medicinals®"
+    end
+
     def get_moods
         @moods = TeaMoods::Mood.all
         TeaMoods::Scraper.scrape_moods if @moods.empty?
@@ -21,12 +25,8 @@ class TeaMoods::CLI
     end
 
     def get_teas(mood_choice)
-        @teas = TeaMoods::Tea.all.select {|tea| tea.mood == mood_choice}
+        @teas = TeaMoods::Tea.all.select {|tea| tea.moods.include?(mood_choice)}
         TeaMoods::Scraper.scrape_teas(mood_choice) if @teas.empty?
-    end
-
-    def get_tea_desc(tea_choice)
-        TeaMoods::Scraper.scrape_tea_desc(tea_choice) if tea_choice.desc == nil
     end
 
     def list_teas(mood_choice)
@@ -38,17 +38,27 @@ class TeaMoods::CLI
         end
     end
 
-    def list_tea_desc(tea_choice)
+    def tea_desc(tea_choice)
+        TeaMoods::Scraper.scrape_tea_desc(tea_choice) if tea_choice.desc == nil
         puts tea_choice.desc
     end
 
+    def is_number?(str)
+        str == "#{str.to_i}"
+    end
+
+    def valid_choice?(input, data)
+        input.to_i > 0 && input.to_i <= data.length
+    end
+
+    def goodbye
+        puts "Goodbye, take it easy."
+    end
+
     def menu
-
         input = nil
-
         while input != "exit"
-
-            puts "Enter the number of a mood/benefit to view associated teas: "
+            puts "Enter the number of a mood/condition to view associated teas: "
             puts "(Otherwise, type 'list' to view list again or 'exit' to leave)"
             
             input = gets.strip
@@ -67,9 +77,7 @@ class TeaMoods::CLI
 
                     if is_number?(input) && valid_choice?(input, @teas)
                         selected_tea = @teas[input.to_i-1]
-
-                        get_tea_desc(selected_tea)
-                        list_tea_desc(selected_tea)
+                        tea_desc(selected_tea)
                     elsif input == "list"
                         list_teas(selected_mood)
                     elsif input == "back"
@@ -90,22 +98,6 @@ class TeaMoods::CLI
                 puts "Invalid input"
             end
         end
-    end
-
-    def is_number?(str)
-        str == "#{str.to_i}"
-    end
-
-    def valid_choice?(input, data)
-        input.to_i > 0 && input.to_i <= data.length
-    end
-
-    def greeting
-        puts "Welcome to TeaMoods! The app that helps you select the perfect cup of tea from Traditonal Medicinals®"
-    end
-
-    def goodbye
-        puts "Goodbye, take it easy."
     end
 end
 
