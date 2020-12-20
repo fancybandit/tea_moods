@@ -1,3 +1,0 @@
-
-module TeaMoods::Menu
-end

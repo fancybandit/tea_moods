@@ -9,7 +9,7 @@ class TeaMoods::CLI
     end
 
     def greeting
-        puts "Welcome to TeaMoods! The app that helps you select the perfect cup of tea from Traditonal Medicinals®"
+        puts "Welcome to TeaMoods! The app that helps you select the perfect cup of tea from Traditonal Medicinals®\n\n"
     end
 
     def get_moods
@@ -18,7 +18,7 @@ class TeaMoods::CLI
     end
 
     def list_moods
-        puts "Available benefits: "
+        # puts "Available benefits: "
         
         array_a = []
         array_b = []
@@ -30,7 +30,8 @@ class TeaMoods::CLI
             end
         end
         table = TTY::Table.new(array_a.zip(array_b))
-        puts table.render(:unicode, resize: true)
+        # puts table.render(:unicode, resize: true)
+        puts TTY::Box.frame((table.render(:basic, resize: false)), width: TTY::Screen.width, title: {top_left: "Available benefits: "}, style: {bg: :blue}, padding: [1,0,0,0])
     end
 
     def get_teas(mood_choice)
