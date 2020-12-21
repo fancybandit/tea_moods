@@ -9,7 +9,7 @@ class TeaMoods::CLI
     end
 
     def greeting
-        puts "Welcome to TeaMoods! The app that helps you select the perfect cup of tea from Traditonal Medicinals®\n\n"
+        puts "\nWelcome to TeaMoods! The app that helps you select the perfect cup of tea from Traditonal Medicinals®\n\n"
     end
 
     def get_moods
@@ -18,8 +18,6 @@ class TeaMoods::CLI
     end
 
     def list_moods
-        # puts "Available benefits: "
-        
         array_a = []
         array_b = []
         @moods.each.with_index(1) do |mood, i|
@@ -30,8 +28,7 @@ class TeaMoods::CLI
             end
         end
         table = TTY::Table.new(array_a.zip(array_b))
-        # puts table.render(:unicode, resize: true)
-        puts TTY::Box.frame((table.render(:basic, resize: false)), width: TTY::Screen.width, title: {top_left: "Available benefits: "}, style: {bg: :blue}, padding: [1,0,0,0])
+        puts TTY::Box.frame((table.render(:basic, resize: false)), width: TTY::Screen.width, title: {top_left: "Available benefits: "}, style: {bg: :bright_black}, padding: [1,0,0,0])
     end
 
     def get_teas(mood_choice)
@@ -40,17 +37,18 @@ class TeaMoods::CLI
     end
 
     def list_teas(mood_choice)
-        puts mood_choice.desc
+        puts "\n#{mood_choice.desc}\n\n"
         get_teas(mood_choice)
-        puts "Matching teas: "
+        table = []
         @teas.each.with_index(1) do |tea, i|
-            puts "#{i}. #{tea.name}"
+            table << "#{i}. #{tea.name}"
         end
+        puts TTY::Box.frame(table.join("\n"), width: TTY::Screen.width, title: {top_left: "Matching teas: "}, style: {bg: :bright_black}, padding: [1,0,0,0])
     end
 
     def tea_desc(tea_choice)
         TeaMoods::Scraper.scrape_tea_desc(tea_choice) if tea_choice.desc == nil
-        puts tea_choice.desc
+        puts "\n#{tea_choice.desc}\n\n"
     end
 
     def is_number?(str)
@@ -62,7 +60,7 @@ class TeaMoods::CLI
     end
 
     def goodbye
-        puts "Goodbye, take it easy."
+        puts "\nGoodbye, take it easy."
     end
 
     def menu
@@ -91,12 +89,12 @@ class TeaMoods::CLI
                     elsif input == "list"
                         list_teas(selected_mood)
                     elsif input == "back"
-                        puts "Returning to mood list"
+                        puts "\nReturning to mood list...\n\n"
                         list_moods
                     elsif input == "exit"
                         goodbye
                     else
-                        puts "Invalid input"
+                        puts "\nInvalid input\n\n"
                     end
                 end
 
@@ -105,7 +103,7 @@ class TeaMoods::CLI
             elsif input == "exit"
                 goodbye
             else
-                puts "Invalid input"
+                puts "\nInvalid input\n\n"
             end
         end
     end
